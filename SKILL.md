@@ -11,7 +11,7 @@ metadata:
     AgriciDaniel/claude-seo (22 of 24 sub-skills, 18 of 22 agent role docs, most
     scripts, the security layer, and the synthesis methodology below) and
     Bhanunamikaze/Agentic-SEO-Skill (the GitHub repository SEO skill and the
-    AEO skill). See AGENTS.md for full attribution.
+    AEO skill).
 ---
 
 # Agentic AI-SEO Skill

@@ -1,12 +1,17 @@
 """Structure and consistency checks for this repo's actual layout.
 
 Unlike the tests ported from claude-seo, these check things specific to
-this build: the orchestrator/plugin.json/README version stay in sync, every
+this build: the orchestrator and plugin.json version stay in sync, every
 routing-table entry and reference-file path in SKILL.md resolves on disk,
 and no .md file anywhere under resources/ names a script that doesn't
 exist in scripts/. These three things were checked by hand repeatedly
 during the build; this turns those checks into a real regression test
 instead of leaving them as a one-time manual pass.
+
+Note: README.md is intentionally excluded from the version-sync check.
+It no longer carries a Version History section as of the commit that
+removed AGENTS.md and THIRD_PARTY_NOTICES.md; SKILL.md and plugin.json
+remain the two sources of truth for the version number.
 """
 
 from __future__ import annotations
@@ -19,7 +24,6 @@ import pytest
 
 REPO = Path(__file__).resolve().parents[1]
 SKILL_MD = (REPO / "SKILL.md").read_text(encoding="utf-8")
-README = (REPO / "README.md").read_text(encoding="utf-8")
 PLUGIN = json.loads((REPO / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
 
 
@@ -34,15 +38,10 @@ def test_skill_md_has_valid_yaml_frontmatter():
     assert data["metadata"]["version"]
 
 
-def test_version_matches_across_skill_plugin_and_readme():
+def test_version_matches_across_skill_and_plugin():
     skill_version = re.search(r'version:\s*"([^"]+)"', SKILL_MD).group(1)
     plugin_version = PLUGIN["version"]
-    readme_version = re.search(r"- \*\*([0-9]+\.[0-9]+\.[0-9]+)\*\*", README).group(1)
-    assert skill_version == plugin_version == readme_version, (
-        skill_version,
-        plugin_version,
-        readme_version,
-    )
+    assert skill_version == plugin_version, (skill_version, plugin_version)
 
 
 def test_no_top_level_version_field_in_skill_md():
