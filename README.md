@@ -123,8 +123,22 @@ cd ~/.config/opencode/skills/agentic-ai-seo-skill
 pip install -r requirements.txt
 ```
 
-### Other hosts (Codex, Antigravity, etc.)
+### IDE / host compatibility
 
-The skill content works the same regardless of install path, `SKILL.md` and everything under `resources/` and `scripts/` don't reference a fixed location. Clone the repo into whatever skills directory your host reads from, `pip install -r requirements.txt` inside it, done. This README doesn't list exact paths for every host since those change and aren't independently confirmed here, check your host's own skills documentation for its install directory.
+`SKILL.md` and everything under `resources/` and `scripts/` don't reference a fixed install location, that's the whole point of the `<SKILL_DIR>` convention. Whether a given host can use it as-is or needs the content adapted into its own format depends on whether that host reads a `SKILL.md` folder natively:
+
+| Host | Install location | Status |
+|---|---|---|
+| Claude Code | `~/.claude/skills/agentic-ai-seo-skill/` | Native skill folder. **Confirmed working in this repo's own build and test process.** |
+| OpenCode | `~/.config/opencode/skills/agentic-ai-seo-skill/` | Native skill folder. **Confirmed working**, same as Claude Code above. |
+| Codex CLI | `~/.codex/skills/agentic-ai-seo-skill/` | Native skill folder, same format. Path as documented by [Bhanunamikaze/Agentic-SEO-Skill](https://github.com/Bhanunamikaze/Agentic-SEO-Skill)'s own installer, not independently tested in this repo. |
+| Antigravity IDE | `<project>/.agent/skills/agentic-ai-seo-skill/` | Native skill folder. Same sourcing caveat as Codex CLI above. |
+| Cursor | `.cursor/rules/*.mdc` + `.cursor/skills/agentic-ai-seo-skill/` | **Different native format.** Cursor reads MDC rule files with their own frontmatter, not a straight copy of `SKILL.md`, real adaptation work, not done here. |
+| Windsurf | `.windsurf/rules/*.md` + `.windsurf/skills/agentic-ai-seo-skill/` | Same caveat as Cursor: different native rule format, needs adaptation. |
+| Continue.dev | `.continue/prompts/*.prompt` + `.continue/skills/agentic-ai-seo-skill/` | Same caveat: slash-command prompt format, needs adaptation. |
+| GitHub Copilot | `.github/copilot-instructions.md` + `.github/skills/agentic-ai-seo-skill/` | Same caveat: repo-instructions format, needs adaptation. |
+| Cline | `.clinerules` + `.cline/skills/agentic-ai-seo-skill/` | Same caveat: project-rules format, needs adaptation. |
+
+For any host not listed, or the five above that need format adaptation: clone the repo, `pip install -r requirements.txt` inside it, and either point your host at the folder if it reads `SKILL.md` natively, or convert `SKILL.md`'s content into whatever rule/prompt format that host expects.
 
 No isolated environment, no Chromium download, just the scripts and whatever Python you already have (3.10+).
