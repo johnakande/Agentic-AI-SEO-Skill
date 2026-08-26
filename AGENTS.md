@@ -4,14 +4,14 @@ Guidance for AI coding agents working in this repository.
 
 ## What this repo is
 
-An **LLM-first SEO analysis skill**, one orchestrator (`SKILL.md`) that routes to 23 sub-skills, 22 specialist role docs, and roughly 44 Python scripts, all under `resources/` and `scripts/`. It's built on the plain-Markdown-plus-YAML-frontmatter convention multiple agent hosts read (Claude Code, Codex, Antigravity, and others), not tied to one host's specific install layout, see "Host-agnostic script invocation" below for exactly how that works. It is a derivative work built from two separately MIT-licensed projects; read `THIRD_PARTY_NOTICES.md` before assuming any given file is original to this repo.
+An **LLM-first SEO analysis skill**, one orchestrator (`SKILL.md`) that routes to 24 sub-skills, 22 specialist role docs, and roughly 44 Python scripts, all under `resources/` and `scripts/`. It's built on the plain-Markdown-plus-YAML-frontmatter convention multiple agent hosts read (Claude Code, Codex, Antigravity, and others), not tied to one host's specific install layout, see "Host-agnostic script invocation" below for exactly how that works. It is a derivative work built from two separately MIT-licensed projects; read `THIRD_PARTY_NOTICES.md` before assuming any given file is original to this repo.
 
 This is a **free-only build**. No script here should require a paid API, a paid account, or an active-ad-spend gate to produce real output. `keyword_planner.py` (Google Ads, bucketed volume ranges without ad spend) was removed for exactly this reason. If you're tempted to add something from claude-seo's paid extensions (Ahrefs, DataForSEO, SE Ranking, Profound, Bing Webmaster paid tiers, Firecrawl beyond its free tier), don't, unless the user explicitly asks and understands the cost.
 
 ## Key files
 
 - `SKILL.md` — the orchestrator. Routing table, synthesis methodology, quality gates, current-fact rules. **Source of truth for what commands exist.**
-- `resources/skills/` — 23 sub-skills. 21 are nested folders (`<name>/SKILL.md`, some with their own `references/`, `assets/`, `templates/`), 2 are flat files (`seo-github.md`, `seo-aeo.md`).
+- `resources/skills/` — 24 sub-skills. 22 are nested folders (`<name>/SKILL.md`, some with their own `references/`, `assets/`, `templates/`), 2 are flat files (`seo-github.md`, `seo-aeo.md`).
 - `resources/agents/` — 22 specialist role docs, read on demand, not registered as separate Claude Code subagents (that would collide with a locally-installed claude-seo; see "Why no real subagents" below).
 - `resources/references/` — 16 shared reference files (quality gates, CWV thresholds, schema types, E-E-A-T, local/maps signals, GitHub ranking factors, etc.), loaded on demand by whichever skill cites them.
 - `scripts/` — ~44 Python scripts, real working tooling, not stubs. `scripts/lib/` holds shared helpers (`safe_http.py`, `file_lock.py`). No isolated venv, no Chromium auto-install, no launcher binary, just `python3` on whatever's already on PATH, see below.

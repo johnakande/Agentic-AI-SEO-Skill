@@ -8,7 +8,7 @@ metadata:
   version: "1.0.0"
   origin: >
     A derivative work combining content from two MIT-licensed projects:
-    AgriciDaniel/claude-seo (23 of 23 core skills, 22 agent role docs, most
+    AgriciDaniel/claude-seo (22 of 24 sub-skills, 18 of 22 agent role docs, most
     scripts, the security layer, and the synthesis methodology below) and
     Bhanunamikaze/Agentic-SEO-Skill (the GitHub repository SEO skill and the
     AEO skill). See AGENTS.md for full attribution.
@@ -20,7 +20,7 @@ metadata:
 
 **Runtime:** Run bundled Python tools as `python3 <SKILL_DIR>/scripts/<script.py> [args]`. `<SKILL_DIR>` is not a variable to set, it is the absolute path to this skill's own directory (the folder containing this `SKILL.md`), which you already know because you just read this file from somewhere on disk. Substitute the real path when you actually issue the command. This is deliberately host-agnostic: it works the same whether this skill is loaded by Claude Code, Codex, Antigravity, or any other agent that reads a `SKILL.md` and runs shell commands, since none of them need a special launcher to know where the file they just read lives. Install dependencies once with `pip install -r requirements.txt` from the skill's root, whatever Python is already on PATH, no isolated environment is created or required.
 
-Comprehensive SEO analysis across all industries (SaaS, local services, e-commerce, publishers, agencies), plus GitHub repository SEO. Orchestrates 23 sub-skills read from `resources/skills/`. This build does not register separate parallel subagents the way its source project does; deep multi-angle analysis happens as sequential passes within one conversation, informed by the specialist role docs in `resources/agents/` (read the relevant one before writing that section of a report, don't skip straight to conclusions).
+Comprehensive SEO analysis across all industries (SaaS, local services, e-commerce, publishers, agencies), plus GitHub repository SEO. Orchestrates 24 sub-skills read from `resources/skills/`. This build does not register separate parallel subagents the way its source project does; deep multi-angle analysis happens as sequential passes within one conversation, informed by the specialist role docs in `resources/agents/` (read the relevant one before writing that section of a report, don't skip straight to conclusions).
 
 ## Quick Reference
 
@@ -133,7 +133,7 @@ Load on demand, not all at startup:
 
 ## Sub-Skills
 
-23 total, in `resources/skills/`. Twenty-one are nested folders (`resources/skills/<name>/SKILL.md`, some with their own `references/`, `assets/`, or `templates/` subfolders); two are flat files (`resources/skills/seo-github.md`, `resources/skills/seo-aeo.md`).
+24 total, in `resources/skills/`. Twenty-two are nested folders (`resources/skills/<name>/SKILL.md`, some with their own `references/`, `assets/`, or `templates/` subfolders); two are flat files (`resources/skills/seo-github.md`, `resources/skills/seo-aeo.md`).
 
 1. **seo-audit** — Full website audit, sequential specialist passes
 2. **seo-page** — Deep single-page analysis
@@ -160,7 +160,7 @@ Load on demand, not all at startup:
 23. **seo-flow** — FLOW framework: 41 evidence-led prompts (Find, Leverage, Optimize, Win, Local)
 24. **seo-github** — GitHub repository SEO: README quality, topics, community health, competitor benchmarking
 
-(Numbered 1-24 above; "23 total" in the description refers to sub-skills excluding this orchestrator itself.)
+(24 sub-skills, numbered 1-24 above, not counting this orchestrator itself.)
 
 ## Specialist Role Docs
 

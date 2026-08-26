@@ -55,7 +55,7 @@ def test_no_top_level_version_field_in_skill_md():
 def test_every_routing_table_skill_path_exists():
     # Pull every `resources/skills/...` path referenced anywhere in SKILL.md.
     paths = set(re.findall(r"resources/skills/[\w\-./]+\.md", SKILL_MD))
-    assert len(paths) >= 23, f"expected at least 23 skill paths, found {len(paths)}"
+    assert len(paths) == 24, f"expected exactly 24 skill paths, found {len(paths)}"
     missing = [p for p in paths if not (REPO / p).is_file()]
     assert not missing, f"SKILL.md references missing skill files: {missing}"
 

@@ -10,7 +10,7 @@
     {
       "name": "agentic-ai-seo-skill",
       "source": "./",
-      "description": "Free, open-source SEO analysis for Claude Code. 23 sub-skills covering technical SEO, schema, content quality, GEO/AEO, local SEO, and GitHub repository SEO.",
+      "description": "Free, open-source SEO analysis for Claude Code. 24 sub-skills covering technical SEO, schema, content quality, GEO/AEO, local SEO, and GitHub repository SEO.",
       "license": "MIT",
       "keywords": ["seo", "technical-seo", "schema", "geo", "aeo", "local-seo", "github-seo", "agent-skills", "claude-code"]
     }

@@ -3,7 +3,7 @@
 ![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Free only](https://img.shields.io/badge/dependencies-free%20only-brightgreen.svg)
 
-Agentic AI-SEO Skill is a free, open-source, LLM-first SEO analysis skill. One orchestrator, `/agentic-ai-seo-skill`, routes to 23 sub-skills covering technical SEO, schema markup, content quality (E-E-A-T), AI search optimization (GEO and AEO), local SEO, and GitHub repository SEO. It's plain Markdown with YAML frontmatter, no host-specific installer or launcher, so it works the same whether it's loaded by Claude Code, Codex, Antigravity, or any other agent that reads a `SKILL.md` and runs shell commands. Confirmed working install paths below cover Claude Code and OpenCode; if you install it into another host's skills directory, the skill content itself doesn't need to change.
+Agentic AI-SEO Skill is a free, open-source, LLM-first SEO analysis skill. One orchestrator, `/agentic-ai-seo-skill`, routes to 24 sub-skills covering technical SEO, schema markup, content quality (E-E-A-T), AI search optimization (GEO and AEO), local SEO, and GitHub repository SEO. It's plain Markdown with YAML frontmatter, no host-specific installer or launcher, so it works the same whether it's loaded by Claude Code, Codex, Antigravity, or any other agent that reads a `SKILL.md` and runs shell commands. Confirmed working install paths below cover Claude Code and OpenCode; if you install it into another host's skills directory, the skill content itself doesn't need to change.
 
 It's a derivative work combining the strongest parts of two separately MIT-licensed projects rather than a from-scratch build: most of the depth and the security-hardened script layer come from [claude-seo](https://github.com/AgriciDaniel/claude-seo), and GitHub repository SEO plus Answer Engine Optimization come from [Agentic-SEO-Skill](https://github.com/Bhanunamikaze/Agentic-SEO-Skill). Full attribution, including both original license texts, lives in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
@@ -69,7 +69,7 @@ Full detail on every command lives in its own file under `resources/skills/`.
 
 ## Sources
 
-- [AgriciDaniel/claude-seo](https://github.com/AgriciDaniel/claude-seo) — orchestration methodology, 21 of 23 sub-skills, 18 of 22 role docs, shared references, most of `scripts/`, including the SSRF-safe HTTP layer.
+- [AgriciDaniel/claude-seo](https://github.com/AgriciDaniel/claude-seo) — orchestration methodology, 22 of 24 sub-skills, 18 of 22 role docs, shared references, most of `scripts/`, including the SSRF-safe HTTP layer.
 - [Bhanunamikaze/Agentic-SEO-Skill](https://github.com/Bhanunamikaze/Agentic-SEO-Skill) — the GitHub repository SEO skill and the AEO skill.
 - Full attribution and both original MIT license texts: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
