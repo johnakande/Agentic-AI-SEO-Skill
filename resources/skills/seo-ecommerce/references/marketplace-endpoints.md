@@ -110,7 +110,7 @@ When consuming responses, normalize:
 | Rating | Integer or float | Float rounded to 1 decimal |
 | Reviews | String or int | Integer |
 
-Use `"$HOME/.claude/skills/seo-skill/bin/seo-skill" run dataforseo_normalize.py --module merchant` for automatic normalization.
+Use `python3 <SKILL_DIR>/scripts/dataforseo_normalize.py --module merchant` for automatic normalization.
 
 ## Cost Reference
 

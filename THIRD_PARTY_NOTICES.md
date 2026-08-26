@@ -98,8 +98,10 @@ SOFTWARE.
 
 ## What's original to this repository
 
-The orchestrator's routing table adaptation, the launcher (`bin/seo-skill`),
-the cross-platform file-locking fix (`scripts/lib/file_lock.py`, applied to
-`dataforseo_costs.py` and `moz_api.py`), removal of paid-vendor-only code
-paths, the restructuring from claude-seo's many-top-level-skills layout into
-one orchestrator with a nested `resources/` tree, and this notices file.
+The orchestrator's routing table adaptation, the cross-platform file-locking
+fix (`scripts/lib/file_lock.py`, applied to `dataforseo_costs.py` and
+`moz_api.py`), removal of paid-vendor-only code paths, the restructuring from
+claude-seo's many-top-level-skills layout into one orchestrator with a nested
+`resources/` tree, and this notices file. The `<SKILL_DIR>` script-invocation
+convention itself is not original to this repository, it's carried over
+directly from Bhanunamikaze/Agentic-SEO-Skill's own `SKILL.md`.

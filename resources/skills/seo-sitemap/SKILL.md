@@ -20,7 +20,7 @@ metadata:
 Discover candidates before reporting a sitemap missing:
 
 ```bash
-"$HOME/.claude/skills/seo-skill/bin/seo-skill" run sitemap_discovery.py <url> --json
+python3 <SKILL_DIR>/scripts/sitemap_discovery.py <url> --json
 ```
 
 The helper reads every bounded `Sitemap:` declaration in robots.txt, validates

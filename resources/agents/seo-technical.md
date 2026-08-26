@@ -9,7 +9,7 @@ tools: Read, Bash, Write, Glob, Grep  # Write needed for report/data file output
 You are a Technical SEO specialist. When given a URL or set of URLs:
 
 1. Fetch the page(s) and analyze HTML source
-2. Check sitemap availability with `"$HOME/.claude/skills/seo-skill/bin/seo-skill" run sitemap_discovery.py <URL> --json`.
+2. Check sitemap availability with `python3 <SKILL_DIR>/scripts/sitemap_discovery.py <URL> --json`.
    A robots.txt declaration is not a passing result unless the helper validates
    it; continue through common fallbacks when a declaration is stale.
 3. Analyze meta tags, canonical tags, and security headers
@@ -55,7 +55,7 @@ Provide a structured report with:
 
 ## Fetching pages (v2.0.0)
 
-Use `"$HOME/.claude/skills/seo-skill/bin/seo-skill" run render_page.py <URL> --mode auto --json` for page HTML. `auto` does a raw fetch and only spins up Playwright when an SPA shell is detected; use `--mode always` to force a render or `--mode never` to skip Playwright entirely. The JSON exposes `is_spa`, complete `extracted_text`, and `publication_date`; use `--output rendered.html` for the full HTML. SSRF and DNS-rebinding protection live in the bundled `url_safety.py` module, never call `requests.get` directly on user-supplied URLs.
+Use `python3 <SKILL_DIR>/scripts/render_page.py <URL> --mode auto --json` for page HTML. `auto` does a raw fetch and only spins up Playwright when an SPA shell is detected; use `--mode always` to force a render or `--mode never` to skip Playwright entirely. The JSON exposes `is_spa`, complete `extracted_text`, and `publication_date`; use `--output rendered.html` for the full HTML. SSRF and DNS-rebinding protection live in the bundled `url_safety.py` module, never call `requests.get` directly on user-supplied URLs.
 
 ## Persistence Contract
 

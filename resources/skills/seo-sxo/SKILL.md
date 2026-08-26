@@ -43,8 +43,8 @@ well-optimized it is.
 
 ### Step 1: Target Acquisition
 
-1. Fetch the target URL via `"$HOME/.claude/skills/seo-skill/bin/seo-skill" run render_page.py <URL> --mode auto` (SPA-aware and SSRF-safe)
-2. Parse with `"$HOME/.claude/skills/seo-skill/bin/seo-skill" run parse_html.py <URL>` to extract: title, H1, meta description,
+1. Fetch the target URL via `python3 <SKILL_DIR>/scripts/render_page.py <URL> --mode auto` (SPA-aware and SSRF-safe)
+2. Parse with `python3 <SKILL_DIR>/scripts/parse_html.py <URL>` to extract: title, H1, meta description,
    headings hierarchy, word count, schema markup, CTAs, media elements
 3. If no keyword provided, extract primary keyword from title tag + H1 overlap
 4. Validate keyword is non-empty before proceeding
@@ -244,7 +244,7 @@ The SXO score is **separate** from the main SEO Health Score.
 ## Quality Checklist
 
 Before delivering results, verify:
-- [ ] Target URL was fetched via `"$HOME/.claude/skills/seo-skill/bin/seo-skill" run render_page.py <URL> --mode auto` (not raw curl/fetch)
+- [ ] Target URL was fetched via `python3 <SKILL_DIR>/scripts/render_page.py <URL> --mode auto` (not raw curl/fetch)
 - [ ] Page type classification uses taxonomy from references
 - [ ] At least 5 SERP results were analyzed
 - [ ] User stories cite specific SERP signals as evidence

@@ -550,7 +550,7 @@ def main():
         result = {
             "status": "error",
             "data": None,
-            "error": 'No Bing Webmaster API key configured. Run: "$HOME/.claude/skills/seo-skill/bin/seo-skill" run backlinks_auth.py --setup',
+            "error": 'No Bing Webmaster API key configured. Run: python3 <SKILL_DIR>/scripts/backlinks_auth.py --setup',
             "metadata": {"source": "bing_webmaster"},
         }
         if args.json:

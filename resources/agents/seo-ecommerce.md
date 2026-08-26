@@ -18,16 +18,16 @@ When delegated tasks during an SEO audit or analysis:
 
 1. Detect e-commerce signals: product schema, price elements, add-to-cart buttons,
    shopping cart, product grids, Shopify/WooCommerce/Magento markers
-2. Analyze product pages with `"$HOME/.claude/skills/seo-skill/bin/seo-skill" run render_page.py <URL> --mode auto` and `"$HOME/.claude/skills/seo-skill/bin/seo-skill" run parse_html.py <URL>`
+2. Analyze product pages with `python3 <SKILL_DIR>/scripts/render_page.py <URL> --mode auto` and `python3 <SKILL_DIR>/scripts/parse_html.py <URL>`
 3. Validate Product schema against Google's required and recommended fields
 4. If DataForSEO credentials available, fetch marketplace data via
-   `"$HOME/.claude/skills/seo-skill/bin/seo-skill" run dataforseo_merchant.py`
+   `python3 <SKILL_DIR>/scripts/dataforseo_merchant.py`
 
 ## Cost Guardrails
 
 Before ANY DataForSEO Merchant API call:
 ```bash
-"$HOME/.claude/skills/seo-skill/bin/seo-skill" run dataforseo_costs.py check <endpoint>
+python3 <SKILL_DIR>/scripts/dataforseo_costs.py check <endpoint>
 ```
 
 Only proceed if `"status": "approved"`. If `"needs_approval"`, surface the cost
@@ -36,7 +36,7 @@ the limitation.
 
 After each API call, log the cost:
 ```bash
-"$HOME/.claude/skills/seo-skill/bin/seo-skill" run dataforseo_costs.py log <endpoint> <actual_cost>
+python3 <SKILL_DIR>/scripts/dataforseo_costs.py log <endpoint> <actual_cost>
 ```
 
 ## Analysis Priorities
@@ -65,7 +65,7 @@ Match existing claude-seo patterns:
 
 ## Fetching pages (v2.0.0)
 
-Use `"$HOME/.claude/skills/seo-skill/bin/seo-skill" run render_page.py <URL> --mode auto --json` for page HTML. `auto` does a raw fetch and only spins up Playwright when an SPA shell is detected; use `--mode always` to force a render or `--mode never` to skip Playwright entirely. The JSON exposes `raw_content` (pre-JS), `content` (post-JS), `is_spa`, `extracted_text` (boilerplate-stripped via trafilatura), and `publication_date` (htmldate). SSRF and DNS-rebinding protection live in the bundled `url_safety.py` module, never call `requests.get` directly on user-supplied URLs.
+Use `python3 <SKILL_DIR>/scripts/render_page.py <URL> --mode auto --json` for page HTML. `auto` does a raw fetch and only spins up Playwright when an SPA shell is detected; use `--mode always` to force a render or `--mode never` to skip Playwright entirely. The JSON exposes `raw_content` (pre-JS), `content` (post-JS), `is_spa`, `extracted_text` (boilerplate-stripped via trafilatura), and `publication_date` (htmldate). SSRF and DNS-rebinding protection live in the bundled `url_safety.py` module, never call `requests.get` directly on user-supplied URLs.
 
 E-commerce sites overwhelmingly inject product schema client-side (Shopify, Magento PWA, headless commerce on Next.js). Prefer `--mode always` for product page audits and compare `raw_content` vs `content` to confirm whether the JSON-LD is server-rendered.
 

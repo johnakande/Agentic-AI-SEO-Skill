@@ -3,7 +3,7 @@
 ![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Free only](https://img.shields.io/badge/dependencies-free%20only-brightgreen.svg)
 
-SEO Skill is a free, open-source SEO analysis skill for Claude Code. One orchestrator, `/seo-skill`, routes to 23 sub-skills covering technical SEO, schema markup, content quality (E-E-A-T), AI search optimization (GEO and AEO), local SEO, and GitHub repository SEO.
+SEO Skill is a free, open-source, LLM-first SEO analysis skill. One orchestrator, `/seo-skill`, routes to 23 sub-skills covering technical SEO, schema markup, content quality (E-E-A-T), AI search optimization (GEO and AEO), local SEO, and GitHub repository SEO. It's plain Markdown with YAML frontmatter, no host-specific installer or launcher, so it works the same whether it's loaded by Claude Code, Codex, Antigravity, or any other agent that reads a `SKILL.md` and runs shell commands. Confirmed working install paths below cover Claude Code and OpenCode; if you install it into another host's skills directory, the skill content itself doesn't need to change.
 
 It's a derivative work combining the strongest parts of two separately MIT-licensed projects rather than a from-scratch build: most of the depth and the security-hardened script layer come from [claude-seo](https://github.com/AgriciDaniel/claude-seo), and GitHub repository SEO plus Answer Engine Optimization come from [Agentic-SEO-Skill](https://github.com/Bhanunamikaze/Agentic-SEO-Skill). Full attribution, including both original license texts, lives in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
@@ -16,6 +16,8 @@ Every script here runs without a paid account, a paid API tier, or an active-ad-
 For a full audit, the orchestrator detects the business type (SaaS, local service, e-commerce, publisher, agency) from homepage signals, works through the relevant specialists sequentially, and synthesizes findings through a PERCEIVE → ANALYZE → VALIDATE → ACT framework before emitting a prioritized action plan. Every recommendation carries the observation it rests on, its relationship to other recommendations, an explicit falsifiability check, and a leading indicator to monitor without re-running the audit. Full methodology in `resources/references/thinking-framework.md`.
 
 Individual commands (`/seo-skill technical`, `/seo-skill schema`, etc.) skip straight to the relevant sub-skill instead of the full multi-pass audit.
+
+Bundled scripts are invoked as `python3 <SKILL_DIR>/scripts/<script>.py`, where `<SKILL_DIR>` isn't an environment variable, it's the absolute path to wherever this skill actually lives, which whatever agent is running it already knows, since it just read this file from there. No launcher, no PATH installer, no hardcoded assumption about which host installed it.
 
 ## Usage
 
@@ -76,7 +78,7 @@ Full detail on every command lives in its own file under `resources/skills/`.
 <details>
 <summary>Show release notes</summary>
 
-- **1.0.0** — Initial release. Forked from claude-seo v2.2.5 and Agentic-SEO-Skill, restructured into one orchestrator with a nested `resources/` tree instead of 25 separate top-level Claude Code skills. Added a minimal launcher (`bin/seo-skill`) in place of the isolated-venv runtime. Fixed a real Windows file-locking gap (`fcntl` silently no-op'd on Windows in two scripts) with a tested cross-platform replacement. Removed all paid-vendor-dependent code paths, including `keyword_planner.py` (Google Ads). Ported 201 tests from the source suite, all passing or correctly platform-skipped.
+- **1.0.0** — Initial release. Forked from claude-seo v2.2.5 and Agentic-SEO-Skill, restructured into one orchestrator with a nested `resources/` tree instead of 25 separate top-level Claude Code skills. Scripts invoke via the host-agnostic `python3 <SKILL_DIR>/scripts/<script>.py` convention (same one Agentic-SEO-Skill uses), no launcher binary, no isolated venv, no hardcoded install path, so it works the same across Claude Code, Codex, Antigravity, or any other agent that reads a `SKILL.md`. Fixed a real Windows file-locking gap (`fcntl` silently no-op'd on Windows in two scripts) with a tested cross-platform replacement. Removed all paid-vendor-dependent code paths, including `keyword_planner.py` (Google Ads). 354 tests passing (201 ported, 153 new structure checks), 4 correctly platform-skipped.
 
 </details>
 
@@ -103,7 +105,7 @@ Claude Code 2.1.142 or newer can install the plugin instead:
 
 The plugin command is `/seo-skill:seo-skill`.
 
-### Manual install
+### Manual install (Claude Code)
 
 ```bash
 mkdir -p ~/.claude/skills
@@ -111,5 +113,18 @@ git clone https://github.com/johnakande/seo-skill.git ~/.claude/skills/seo-skill
 cd ~/.claude/skills/seo-skill
 pip install -r requirements.txt
 ```
+
+### Manual install (OpenCode)
+
+```bash
+mkdir -p ~/.config/opencode/skills
+git clone https://github.com/johnakande/seo-skill.git ~/.config/opencode/skills/seo-skill
+cd ~/.config/opencode/skills/seo-skill
+pip install -r requirements.txt
+```
+
+### Other hosts (Codex, Antigravity, etc.)
+
+The skill content works the same regardless of install path, `SKILL.md` and everything under `resources/` and `scripts/` don't reference a fixed location. Clone the repo into whatever skills directory your host reads from, `pip install -r requirements.txt` inside it, done. This README doesn't list exact paths for every host since those change and aren't independently confirmed here, check your host's own skills documentation for its install directory.
 
 No isolated environment, no Chromium download, just the scripts and whatever Python you already have (3.10+).

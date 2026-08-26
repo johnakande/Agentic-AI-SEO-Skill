@@ -17,10 +17,10 @@ elements by comparing current page state against stored baselines.
 ## Tools
 
 All page fetching goes through the project's existing scripts with SSRF protection:
-- `"$HOME/.claude/skills/seo-skill/bin/seo-skill" run drift_baseline.py <url>` -- capture a new baseline
-- `"$HOME/.claude/skills/seo-skill/bin/seo-skill" run drift_compare.py <url>` -- compare current state to baseline
-- `"$HOME/.claude/skills/seo-skill/bin/seo-skill" run drift_history.py <url>` -- show change history
-- `"$HOME/.claude/skills/seo-skill/bin/seo-skill" run drift_report.py <file> --output report.html` -- generate HTML report
+- `python3 <SKILL_DIR>/scripts/drift_baseline.py <url>` -- capture a new baseline
+- `python3 <SKILL_DIR>/scripts/drift_compare.py <url>` -- compare current state to baseline
+- `python3 <SKILL_DIR>/scripts/drift_history.py <url>` -- show change history
+- `python3 <SKILL_DIR>/scripts/drift_report.py <file> --output report.html` -- generate HTML report
 
 Never use curl, wget, or raw HTTP requests. All fetching is handled by
 the bundled `fetch_page.py` module internally, which validates URLs against private/loopback
