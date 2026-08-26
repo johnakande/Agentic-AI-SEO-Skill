@@ -1,0 +1,5 @@
+# Test-only dependencies. Not needed to actually use the skill,
+# only to run tests/ locally or in CI.
+-r requirements.txt
+pytest>=8.0.0,<9.0.0
+pyyaml>=6.0.0,<7.0.0

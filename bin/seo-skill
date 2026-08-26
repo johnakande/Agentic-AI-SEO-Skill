@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Minimal launcher for SEO Skill's bundled scripts.
+#
+# This is a deliberately thin dispatcher: it does not manage an isolated
+# Python environment the way claude-seo's runtime.py does. It resolves the
+# skill's own scripts/ directory relative to itself (so it works no matter
+# what the caller's working directory is) and runs the requested script
+# with whatever `python3` is already on PATH.
+#
+# Usage: seo-skill run <script.py> [args...]
+
+set -euo pipefail
+
+SKILL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+usage() {
+  echo "Usage: seo-skill run <script.py> [args...]" >&2
+  exit 1
+}
+
+[ "${1:-}" = "run" ] || usage
+shift
+
+script="${1:-}"
+[ -n "$script" ] || usage
+shift
+
+script_path="$SKILL_DIR/scripts/$script"
+if [ ! -f "$script_path" ]; then
+  echo "seo-skill: no such script: $script" >&2
+  echo "Looked in: $SKILL_DIR/scripts/" >&2
+  exit 1
+fi
+
+exec python3 "$script_path" "$@"
