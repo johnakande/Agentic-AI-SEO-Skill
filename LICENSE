@@ -19,11 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-This repository is a derivative work combining substantial content from two
-separately MIT-licensed projects. Their original license texts and copyright
-notices are preserved in full in THIRD_PARTY_NOTICES.md, as MIT requires for
-any substantial portion of their code carried into a new work. See that file
-and AGENTS.md for exactly which parts came from where.

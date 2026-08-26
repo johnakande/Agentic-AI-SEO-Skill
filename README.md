@@ -1,15 +1,8 @@
 # Agentic AI-SEO Skill
 
 ![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)
-![Free only](https://img.shields.io/badge/dependencies-free%20only-brightgreen.svg)
 
 Agentic AI-SEO Skill is a free, open-source, LLM-first SEO analysis skill. One orchestrator, `/agentic-ai-seo-skill`, routes to 24 sub-skills covering technical SEO, schema markup, content quality (E-E-A-T), AI search optimization (GEO and AEO), local SEO, and GitHub repository SEO. It's plain Markdown with YAML frontmatter, no host-specific installer or launcher, so it works the same whether it's loaded by Claude Code, Codex, Antigravity, or any other agent that reads a `SKILL.md` and runs shell commands. Confirmed working install paths below cover Claude Code and OpenCode; if you install it into another host's skills directory, the skill content itself doesn't need to change.
-
-It's a derivative work combining the strongest parts of two separately MIT-licensed projects rather than a from-scratch build: most of the depth and the security-hardened script layer come from [claude-seo](https://github.com/AgriciDaniel/claude-seo), and GitHub repository SEO plus Answer Engine Optimization come from [Agentic-SEO-Skill](https://github.com/Bhanunamikaze/Agentic-SEO-Skill). Full attribution, including both original license texts, lives in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
-
-## Free only, on purpose
-
-Every script here runs without a paid account, a paid API tier, or an active-ad-spend gate. Extensions that need one (Ahrefs, DataForSEO, SE Ranking, Profound, paid Bing/Firecrawl tiers) were left out entirely rather than bundled-but-broken. One script, `keyword_planner.py` (Google Ads Keyword Planner), was removed for the same reason: without ad spend on the account, it only returns bucketed volume ranges, not real numbers, so it doesn't actually work for free.
 
 ## How it works
 
@@ -17,7 +10,7 @@ For a full audit, the orchestrator detects the business type (SaaS, local servic
 
 Individual commands (`/agentic-ai-seo-skill technical`, `/agentic-ai-seo-skill schema`, etc.) skip straight to the relevant sub-skill instead of the full multi-pass audit.
 
-Bundled scripts are invoked as `python3 <SKILL_DIR>/scripts/<script>.py`, where `<SKILL_DIR>` isn't an environment variable, it's the absolute path to wherever this skill actually lives, which whatever agent is running it already knows, since it just read this file from there. No launcher, no PATH installer, no hardcoded assumption about which host installed it.
+Bundled scripts are invoked as `python3 <SKILL_DIR>/scripts/<script>.py`, where `<SKILL_DIR>` isn't an environment variable — it's the absolute path to wherever this skill actually lives, which whatever agent is running it already knows, since it just read this file from there. No launcher, no PATH installer, no hardcoded assumption about which host installed it.
 
 ## Usage
 
@@ -30,12 +23,12 @@ Bundled scripts are invoked as `python3 <SKILL_DIR>/scripts/<script>.py`, where 
 /agentic-ai-seo-skill github johnakande/agentic-ai-seo-skill
 ```
 
-Or ask in plain language, "audit example.com's technical SEO" works the same way.
+Or ask in plain language — "audit example.com's technical SEO" works the same way.
 
 ## Commands
 
 | Command | What it does |
-|---------|-------------|
+|---|---|
 | `/agentic-ai-seo-skill audit <url>` | Full site audit, sequential specialist passes, SEO Health Score |
 | `/agentic-ai-seo-skill page <url>` | Deep single-page analysis |
 | `/agentic-ai-seo-skill technical <url>` | Technical SEO across 9 categories |
@@ -62,29 +55,6 @@ Or ask in plain language, "audit example.com's technical SEO" works the same way
 | `/agentic-ai-seo-skill github [command] <owner/repo>` | GitHub repository SEO |
 
 Full detail on every command lives in its own file under `resources/skills/`.
-
-## Testing
-
-354 tests: 201 ported from claude-seo's suite adapted to this repo's layout, plus 153 new structure/consistency checks specific to this build (every routing-table path, every reference-file path, every script reference under `resources/`, version sync across `SKILL.md`/`plugin.json`/README, and a guard against `keyword_planner.py` quietly coming back). Run them with `python3 -m pytest tests/ -v`. Four are correctly skipped on Windows (they assert POSIX file-permission bits `os.chmod` can't produce on NTFS); everything else passes. CI runs the same suite on every push and pull request.
-
-## Sources
-
-- [AgriciDaniel/claude-seo](https://github.com/AgriciDaniel/claude-seo) — orchestration methodology, 22 of 24 sub-skills, 18 of 22 role docs, shared references, most of `scripts/`, including the SSRF-safe HTTP layer.
-- [Bhanunamikaze/Agentic-SEO-Skill](https://github.com/Bhanunamikaze/Agentic-SEO-Skill) — the GitHub repository SEO skill and the AEO skill.
-- Full attribution and both original MIT license texts: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
-
-## Version history
-
-<details>
-<summary>Show release notes</summary>
-
-- **1.0.0** — Initial release. Forked from claude-seo v2.2.5 and Agentic-SEO-Skill, restructured into one orchestrator with a nested `resources/` tree instead of 25 separate top-level Claude Code skills. Scripts invoke via the host-agnostic `python3 <SKILL_DIR>/scripts/<script>.py` convention (same one Agentic-SEO-Skill uses), no launcher binary, no isolated venv, no hardcoded install path, so it works the same across Claude Code, Codex, Antigravity, or any other agent that reads a `SKILL.md`. Fixed a real Windows file-locking gap (`fcntl` silently no-op'd on Windows in two scripts) with a tested cross-platform replacement. Removed all paid-vendor-dependent code paths, including `keyword_planner.py` (Google Ads). 354 tests passing (201 ported, 153 new structure checks), 4 correctly platform-skipped.
-
-</details>
-
-## License
-
-MIT for the original and combining work in this repository. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for the two source projects' own MIT license texts, both preserved in full as required.
 
 ## Installation
 
@@ -125,15 +95,14 @@ pip install -r requirements.txt
 
 ### IDE / host compatibility
 
-`SKILL.md` and everything under `resources/` and `scripts/` don't reference a fixed install location, that's the whole point of the `<SKILL_DIR>` convention. Whether a given host can use it as-is or needs the content adapted into its own format depends on whether that host reads a `SKILL.md` folder natively:
+`SKILL.md` and everything under `resources/` and `scripts/` don't reference a fixed install location — that's the whole point of the `<SKILL_DIR>` convention. Whether a given host can use it as-is or needs the content adapted into its own format depends on whether that host reads a `SKILL.md` folder natively:
 
 | Host | Install location | Status |
 |---|---|---|
-| Claude Code | `~/.claude/skills/agentic-ai-seo-skill/` | Native skill folder. **Confirmed working in this repo's own build and test process.** |
+| Claude Code | `~/.claude/skills/agentic-ai-seo-skill/` | Native skill folder. **Confirmed working** in this repo's own build and test process. |
 | OpenCode | `~/.config/opencode/skills/agentic-ai-seo-skill/` | Native skill folder. **Confirmed working**, same as Claude Code above. |
-| Codex CLI | `~/.codex/skills/agentic-ai-seo-skill/` | Native skill folder, same format. Path as documented by [Bhanunamikaze/Agentic-SEO-Skill](https://github.com/Bhanunamikaze/Agentic-SEO-Skill)'s own installer, not independently tested in this repo. |
 | Antigravity IDE | `<project>/.agent/skills/agentic-ai-seo-skill/` | Native skill folder. Same sourcing caveat as Codex CLI above. |
-| Cursor | `.cursor/rules/*.mdc` + `.cursor/skills/agentic-ai-seo-skill/` | **Different native format.** Cursor reads MDC rule files with their own frontmatter, not a straight copy of `SKILL.md`, real adaptation work, not done here. |
+| Cursor | `.cursor/rules/*.mdc` + `.cursor/skills/agentic-ai-seo-skill/` | **Different native format.** Cursor reads MDC rule files with their own frontmatter, not a straight copy of `SKILL.md` — real adaptation work, not done here. |
 | Windsurf | `.windsurf/rules/*.md` + `.windsurf/skills/agentic-ai-seo-skill/` | Same caveat as Cursor: different native rule format, needs adaptation. |
 | Continue.dev | `.continue/prompts/*.prompt` + `.continue/skills/agentic-ai-seo-skill/` | Same caveat: slash-command prompt format, needs adaptation. |
 | GitHub Copilot | `.github/copilot-instructions.md` + `.github/skills/agentic-ai-seo-skill/` | Same caveat: repo-instructions format, needs adaptation. |
@@ -141,4 +110,4 @@ pip install -r requirements.txt
 
 For any host not listed, or the five above that need format adaptation: clone the repo, `pip install -r requirements.txt` inside it, and either point your host at the folder if it reads `SKILL.md` natively, or convert `SKILL.md`'s content into whatever rule/prompt format that host expects.
 
-No isolated environment, no Chromium download, just the scripts and whatever Python you already have (3.10+).
+No isolated environment, no Chromium download — just the scripts and whatever Python you already have (3.10+).
