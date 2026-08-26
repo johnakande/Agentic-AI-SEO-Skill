@@ -1,5 +1,5 @@
 ---
-name: seo-skill
+name: agentic-ai-seo-skill
 description: "Comprehensive SEO analysis for any website or business type. Full site audits, single-page analysis, technical SEO (crawlability, indexability, Core Web Vitals with INP), schema markup, content quality (E-E-A-T), image optimization, sitemap analysis, GEO for AI Overviews/ChatGPT/Perplexity, AEO for Featured Snippets/PAA/Knowledge Panel, GitHub repository SEO, local SEO, and strategic planning across SaaS, e-commerce, local, publisher, and agency businesses. Triggers on: SEO, audit, schema, Core Web Vitals, sitemap, E-E-A-T, AI Overviews, GEO, AEO, featured snippet, technical SEO, content quality, page speed, local SEO, GitHub SEO, README audit."
 user-invocable: true
 argument-hint: "[command] [url]"
@@ -14,9 +14,9 @@ metadata:
     AEO skill). See AGENTS.md for full attribution.
 ---
 
-# SEO Skill
+# Agentic AI-SEO Skill
 
-**Invocation:** `/seo-skill $1 $2` where `$1` is the command and `$2` is the URL or argument.
+**Invocation:** `/agentic-ai-seo-skill $1 $2` where `$1` is the command and `$2` is the URL or argument.
 
 **Runtime:** Run bundled Python tools as `python3 <SKILL_DIR>/scripts/<script.py> [args]`. `<SKILL_DIR>` is not a variable to set, it is the absolute path to this skill's own directory (the folder containing this `SKILL.md`), which you already know because you just read this file from somewhere on disk. Substitute the real path when you actually issue the command. This is deliberately host-agnostic: it works the same whether this skill is loaded by Claude Code, Codex, Antigravity, or any other agent that reads a `SKILL.md` and runs shell commands, since none of them need a special launcher to know where the file they just read lives. Install dependencies once with `pip install -r requirements.txt` from the skill's root, whatever Python is already on PATH, no isolated environment is created or required.
 
@@ -26,47 +26,47 @@ Comprehensive SEO analysis across all industries (SaaS, local services, e-commer
 
 | Command | What it does | Reads |
 |---------|-------------|-------|
-| `/seo-skill audit <url>` | Full website audit, sequential specialist passes | `resources/skills/seo-audit/SKILL.md` |
-| `/seo-skill page <url>` | Deep single-page analysis | `resources/skills/seo-page/SKILL.md` |
-| `/seo-skill technical <url>` | Technical SEO audit (9 categories) | `resources/skills/seo-technical/SKILL.md` |
-| `/seo-skill content <url>` | E-E-A-T and content quality analysis | `resources/skills/seo-content/SKILL.md` |
-| `/seo-skill content-brief <topic or url>` | Content brief: keywords, outline, internal links | `resources/skills/seo-content-brief/SKILL.md` |
-| `/seo-skill schema <url>` | Detect, validate, generate Schema.org markup | `resources/skills/seo-schema/SKILL.md` |
-| `/seo-skill sitemap <url or generate>` | Analyze or generate XML sitemaps | `resources/skills/seo-sitemap/SKILL.md` |
-| `/seo-skill images <url or optimize>` | Image SEO: on-page audit, file optimization | `resources/skills/seo-images/SKILL.md` |
-| `/seo-skill geo <url>` | AI Overviews / Generative Engine Optimization | `resources/skills/seo-geo/SKILL.md` |
-| `/seo-skill aeo <url>` | Featured Snippets, PAA, Knowledge Panel, Sitelinks Searchbox | `resources/skills/seo-aeo.md` |
-| `/seo-skill plan <business-type>` | Strategic SEO planning with industry templates | `resources/skills/seo-plan/SKILL.md` |
-| `/seo-skill programmatic [url\|plan]` | Programmatic SEO analysis and planning | `resources/skills/seo-programmatic/SKILL.md` |
-| `/seo-skill competitor-pages [url\|generate]` | Competitor comparison page generation | `resources/skills/seo-competitor-pages/SKILL.md` |
-| `/seo-skill local <url>` | Local SEO (GBP, citations, reviews, map pack) | `resources/skills/seo-local/SKILL.md` |
-| `/seo-skill maps [command] [args]` | Maps intelligence (geo-grid, GBP audit, reviews) | `resources/skills/seo-maps/SKILL.md` |
-| `/seo-skill hreflang [url]` | Hreflang / i18n SEO audit and generation | `resources/skills/seo-hreflang/SKILL.md` |
-| `/seo-skill google [command] [url]` | Google SEO APIs: GSC, PageSpeed, CrUX, Indexing, GA4 | `resources/skills/seo-google/SKILL.md` |
-| `/seo-skill backlinks <url>` | Backlink profile analysis, free-tier sources | `resources/skills/seo-backlinks/SKILL.md` |
-| `/seo-skill cluster <seed-keyword>` | SERP-based semantic clustering | `resources/skills/seo-cluster/SKILL.md` |
-| `/seo-skill sxo <url>` | Search Experience Optimization | `resources/skills/seo-sxo/SKILL.md` |
-| `/seo-skill drift baseline\|compare\|history <url>` | SEO drift monitoring over time | `resources/skills/seo-drift/SKILL.md` |
-| `/seo-skill ecommerce <url>` | E-commerce SEO: product schema, marketplace intel | `resources/skills/seo-ecommerce/SKILL.md` |
-| `/seo-skill flow [stage] [url\|topic]` | FLOW framework: 41 evidence-led prompts | `resources/skills/seo-flow/SKILL.md` |
-| `/seo-skill github [command] <owner/repo>` | GitHub repository SEO: README, topics, community health | `resources/skills/seo-github.md` |
+| `/agentic-ai-seo-skill audit <url>` | Full website audit, sequential specialist passes | `resources/skills/seo-audit/SKILL.md` |
+| `/agentic-ai-seo-skill page <url>` | Deep single-page analysis | `resources/skills/seo-page/SKILL.md` |
+| `/agentic-ai-seo-skill technical <url>` | Technical SEO audit (9 categories) | `resources/skills/seo-technical/SKILL.md` |
+| `/agentic-ai-seo-skill content <url>` | E-E-A-T and content quality analysis | `resources/skills/seo-content/SKILL.md` |
+| `/agentic-ai-seo-skill content-brief <topic or url>` | Content brief: keywords, outline, internal links | `resources/skills/seo-content-brief/SKILL.md` |
+| `/agentic-ai-seo-skill schema <url>` | Detect, validate, generate Schema.org markup | `resources/skills/seo-schema/SKILL.md` |
+| `/agentic-ai-seo-skill sitemap <url or generate>` | Analyze or generate XML sitemaps | `resources/skills/seo-sitemap/SKILL.md` |
+| `/agentic-ai-seo-skill images <url or optimize>` | Image SEO: on-page audit, file optimization | `resources/skills/seo-images/SKILL.md` |
+| `/agentic-ai-seo-skill geo <url>` | AI Overviews / Generative Engine Optimization | `resources/skills/seo-geo/SKILL.md` |
+| `/agentic-ai-seo-skill aeo <url>` | Featured Snippets, PAA, Knowledge Panel, Sitelinks Searchbox | `resources/skills/seo-aeo.md` |
+| `/agentic-ai-seo-skill plan <business-type>` | Strategic SEO planning with industry templates | `resources/skills/seo-plan/SKILL.md` |
+| `/agentic-ai-seo-skill programmatic [url\|plan]` | Programmatic SEO analysis and planning | `resources/skills/seo-programmatic/SKILL.md` |
+| `/agentic-ai-seo-skill competitor-pages [url\|generate]` | Competitor comparison page generation | `resources/skills/seo-competitor-pages/SKILL.md` |
+| `/agentic-ai-seo-skill local <url>` | Local SEO (GBP, citations, reviews, map pack) | `resources/skills/seo-local/SKILL.md` |
+| `/agentic-ai-seo-skill maps [command] [args]` | Maps intelligence (geo-grid, GBP audit, reviews) | `resources/skills/seo-maps/SKILL.md` |
+| `/agentic-ai-seo-skill hreflang [url]` | Hreflang / i18n SEO audit and generation | `resources/skills/seo-hreflang/SKILL.md` |
+| `/agentic-ai-seo-skill google [command] [url]` | Google SEO APIs: GSC, PageSpeed, CrUX, Indexing, GA4 | `resources/skills/seo-google/SKILL.md` |
+| `/agentic-ai-seo-skill backlinks <url>` | Backlink profile analysis, free-tier sources | `resources/skills/seo-backlinks/SKILL.md` |
+| `/agentic-ai-seo-skill cluster <seed-keyword>` | SERP-based semantic clustering | `resources/skills/seo-cluster/SKILL.md` |
+| `/agentic-ai-seo-skill sxo <url>` | Search Experience Optimization | `resources/skills/seo-sxo/SKILL.md` |
+| `/agentic-ai-seo-skill drift baseline\|compare\|history <url>` | SEO drift monitoring over time | `resources/skills/seo-drift/SKILL.md` |
+| `/agentic-ai-seo-skill ecommerce <url>` | E-commerce SEO: product schema, marketplace intel | `resources/skills/seo-ecommerce/SKILL.md` |
+| `/agentic-ai-seo-skill flow [stage] [url\|topic]` | FLOW framework: 41 evidence-led prompts | `resources/skills/seo-flow/SKILL.md` |
+| `/agentic-ai-seo-skill github [command] <owner/repo>` | GitHub repository SEO: README, topics, community health | `resources/skills/seo-github.md` |
 
 ## Orchestration Logic
 
-When the user invokes `/seo-skill audit`:
+When the user invokes `/agentic-ai-seo-skill audit`:
 1. Detect business type (SaaS, local, ecommerce, publisher, agency, other) from homepage signals, see "Industry Detection" below.
 2. Work through the relevant specialists sequentially, informed by their role docs in `resources/agents/`: seo-technical, seo-content, seo-schema, seo-sitemap, seo-performance, seo-visual, seo-geo always; seo-aeo for Featured Snippet / PAA opportunities; seo-google if Google API credentials are configured; seo-local and seo-maps if a local business is detected; seo-backlinks if backlink APIs are configured; seo-cluster if content-strategy signals are present; seo-ecommerce if e-commerce is detected; seo-drift if a baseline exists for this URL. Always include seo-sxo, search experience applies to every site.
 3. Collect findings and generate a unified report with an SEO Health Score (0-100).
 4. **Synthesize via the framework below**, walk PERCEIVE -> ANALYZE -> VALIDATE -> ACT before bucketing findings into Critical / High / Medium / Low.
 5. Build a prioritized action plan with dependency sequencing and a falsifiability check per recommendation.
 
-For individual commands (`/seo-skill technical`, `/seo-skill schema`, etc.), load the relevant skill file directly and skip the multi-specialist pass.
+For individual commands (`/agentic-ai-seo-skill technical`, `/agentic-ai-seo-skill schema`, etc.), load the relevant skill file directly and skip the multi-specialist pass.
 
 ## Synthesis Methodology
 
 Findings alone are not a strategy. Walk four phases before emitting output: **PERCEIVE** (observe-external, observe-internal, listen to what the evidence actually says rather than what's expected), **ANALYZE** (think through causes, connect findings laterally to each other, connect systemically to the site as a whole), **VALIDATE** (does this actually hold up, would you accept this recommendation if someone gave it to you), **ACT** (what specifically changes, what grows as a result).
 
-Full audits (`/seo-skill audit`, `/seo-skill page`) walk every phase before emitting the action plan. Narrower commands pass at least THINK + VALIDATE before emitting, a sound first-principle reason and a stated falsifiability check. The Critical / High / Medium / Low buckets are the *output* of this process, not a substitute for it.
+Full audits (`/agentic-ai-seo-skill audit`, `/agentic-ai-seo-skill page`) walk every phase before emitting the action plan. Narrower commands pass at least THINK + VALIDATE before emitting, a sound first-principle reason and a stated falsifiability check. The Critical / High / Medium / Low buckets are the *output* of this process, not a substitute for it.
 
 Each emitted recommendation carries:
 - The observation it rests on
@@ -81,7 +81,7 @@ Every number in a report (a score, a word count, a load time, a keyword volume) 
 ## Industry Detection
 
 - **SaaS**: pricing page, /features, /integrations, /docs, "free trial", "sign up"
-- **Local Service**: phone number, address, service area, "serving [city]", Google Maps embed, suggest `/seo-skill local` for deeper analysis
+- **Local Service**: phone number, address, service area, "serving [city]", Google Maps embed, suggest `/agentic-ai-seo-skill local` for deeper analysis
 - **E-commerce**: /products, /collections, /cart, "add to cart", product schema
 - **Publisher**: /blog, /articles, /topics, article schema, author pages, publication dates
 - **Agency**: /case-studies, /portfolio, /industries, "our work", client logos

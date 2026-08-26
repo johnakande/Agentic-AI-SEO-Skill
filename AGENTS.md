@@ -22,11 +22,11 @@ This is a **free-only build**. No script here should require a paid API, a paid 
 
 Every script reference under `resources/` is written as `python3 <SKILL_DIR>/scripts/<script>.py [args]`. `<SKILL_DIR>` is a literal placeholder, not an environment variable: it means "the absolute path to this skill's own directory," which whatever model is executing the command already knows, since it just read `SKILL.md` from somewhere on disk. This is the same convention Bhanunamikaze/Agentic-SEO-Skill uses (see its `SKILL.md`, line 84: `<SKILL_DIR> = absolute path to this skill directory`), and it's the actual reason that project works across Claude Code, Codex, and Antigravity without a per-host installer: no launcher binary, no hardcoded install path, no venv-swap machinery, the resolution happens in the model's own reasoning, which is host-agnostic by construction.
 
-An earlier version of this repo had a `bin/seo-skill` launcher script with every reference hardcoded to `"$HOME/.claude/skills/seo-skill/bin/seo-skill" run ...`, that only worked on Claude Code's specific install path. It's gone now, replaced with the pattern above across all 145 script references. Don't reintroduce a launcher or a hardcoded host path; if you add a new script reference anywhere, use `python3 <SKILL_DIR>/scripts/<script>.py`.
+An earlier version of this repo (when it was still named `seo-skill`, before this rename) had a `bin/seo-skill` launcher script with every reference hardcoded to `"$HOME/.claude/skills/seo-skill/bin/seo-skill" run ...`, that only worked on Claude Code's specific install path. It's gone now, replaced with the pattern above across all 145 script references. Don't reintroduce a launcher or a hardcoded host path; if you add a new script reference anywhere, use `python3 <SKILL_DIR>/scripts/<script>.py`.
 
 ## Why no real subagents
 
-claude-seo spawns up to 15 parallel Claude Code subagents during a full audit, registered globally in `~/.claude/agents/`. This build deliberately does not do that: registering 22 agent names globally would collide with a machine that also has claude-seo installed (exactly the situation this repo was built alongside). The role docs are preserved as content, read on demand for sequential deep passes, not wired to the Agent tool. Re-adding real parallel delegation is a reasonable v2 change, but do it with prefixed names (e.g. `seo-skill-technical`) to stay collision-safe, don't just copy claude-seo's agent filenames verbatim into `~/.claude/agents/`.
+claude-seo spawns up to 15 parallel Claude Code subagents during a full audit, registered globally in `~/.claude/agents/`. This build deliberately does not do that: registering 22 agent names globally would collide with a machine that also has claude-seo installed (exactly the situation this repo was built alongside). The role docs are preserved as content, read on demand for sequential deep passes, not wired to the Agent tool. Re-adding real parallel delegation is a reasonable v2 change, but do it with prefixed names (e.g. `agentic-ai-seo-skill-technical`) to stay collision-safe, don't just copy claude-seo's agent filenames verbatim into `~/.claude/agents/`.
 
 ## The maintenance contract
 
@@ -41,7 +41,7 @@ claude-seo spawns up to 15 parallel Claude Code subagents during a full audit, r
 
 - No automated structure/consistency test yet (the equivalent of claude-seo's `test_manifest_consistency.py` or this session's own `validate-package.py` pattern from a different skill). The routing table, script references, and reference-file paths were verified by hand during the build; a real regression test for this is the next thing worth adding.
 - CI runs `pytest`, but nothing yet re-verifies the hand-checked path consistency on every change.
-- `resources/skills/seo-flow`'s `/seo-skill flow sync` command is intentionally non-functional (see that skill's own error-handling table), it was tied to a `gh`-CLI-based upstream sync mechanic (`sync_flow.py`) that didn't fit this simpler build. The 41 prompts are a static, complete snapshot; they just don't auto-update.
+- `resources/skills/seo-flow`'s `/agentic-ai-seo-skill flow sync` command is intentionally non-functional (see that skill's own error-handling table), it was tied to a `gh`-CLI-based upstream sync mechanic (`sync_flow.py`) that didn't fit this simpler build. The 41 prompts are a static, complete snapshot; they just don't auto-update.
 
 ## Editing SKILL.md or any resources/skills/ file
 

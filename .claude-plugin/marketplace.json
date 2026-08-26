@@ -1,14 +1,14 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace-manifest.json",
-  "name": "seo-skill",
+  "name": "agentic-ai-seo-skill",
   "owner": {
     "name": "johnakande",
     "url": "https://github.com/johnakande"
   },
-  "description": "Install SEO Skill as a Claude plugin.",
+  "description": "Install Agentic AI-SEO Skill as a Claude plugin.",
   "plugins": [
     {
-      "name": "seo-skill",
+      "name": "agentic-ai-seo-skill",
       "source": "./",
       "description": "Free, open-source SEO analysis for Claude Code. 23 sub-skills covering technical SEO, schema, content quality, GEO/AEO, local SEO, and GitHub repository SEO.",
       "license": "MIT",

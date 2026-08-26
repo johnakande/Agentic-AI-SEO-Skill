@@ -29,7 +29,7 @@ def test_skill_md_has_valid_yaml_frontmatter():
     import yaml
 
     data = yaml.safe_load(match.group(1))
-    assert data["name"] == "seo-skill"
+    assert data["name"] == "agentic-ai-seo-skill"
     assert "description" in data
     assert data["metadata"]["version"]
 
