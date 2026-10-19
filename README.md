@@ -1,72 +1,105 @@
-# Agentic AI-SEO Skill
+# Agentic AI SEO Skill
+
+Free, open source SEO audits that run inside your AI coding agent. One command, 24 specialist checks, one prioritized fix list.
 
 ![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)
 
-Agentic AI-SEO Skill is a free, open-source, LLM-first SEO analysis skill. One orchestrator, `/agentic-ai-seo-skill`, routes to 24 sub-skills covering technical SEO, schema markup, content quality (E-E-A-T), AI search optimization (GEO and AEO), local SEO, and GitHub repository SEO. It's plain Markdown with YAML frontmatter, no host-specific installer or launcher, so it works the same whether it's loaded by Claude Code, Codex, Antigravity, or any other agent that reads a `SKILL.md` and runs shell commands. Confirmed working install paths below cover Claude Code and OpenCode; if you install it into another host's skills directory, the skill content itself doesn't need to change.
+Works with Claude Code and OpenCode. It covers technical SEO, schema, E-E-A-T content quality, GEO and AEO (AI search), local SEO, and GitHub repo SEO. Plain Markdown, no launcher, no paid API needed.
 
-## How it works
-
-For a full audit, the orchestrator detects the business type (SaaS, local service, e-commerce, publisher, agency) from homepage signals, works through the relevant specialists sequentially, and synthesizes findings through a PERCEIVE → ANALYZE → VALIDATE → ACT framework before emitting a prioritized action plan. Every recommendation carries the observation it rests on, its relationship to other recommendations, an explicit falsifiability check, and a leading indicator to monitor without re-running the audit. Full methodology in `resources/references/thinking-framework.md`.
-
-Individual commands (`/agentic-ai-seo-skill technical`, `/agentic-ai-seo-skill schema`, etc.) skip straight to the relevant sub-skill instead of the full multi-pass audit.
-
-Bundled scripts are invoked as `python3 <SKILL_DIR>/scripts/<script>.py`, where `<SKILL_DIR>` isn't an environment variable — it's the absolute path to wherever this skill actually lives, which whatever agent is running it already knows, since it just read this file from there. No launcher, no PATH installer, no hardcoded assumption about which host installed it.
-
-## Usage
-
-```
-/agentic-ai-seo-skill audit https://example.com
-/agentic-ai-seo-skill technical https://example.com
-/agentic-ai-seo-skill schema https://example.com
-/agentic-ai-seo-skill geo https://example.com
-/agentic-ai-seo-skill aeo https://example.com
-/agentic-ai-seo-skill github johnakande/agentic-ai-seo-skill
-```
-
-Or ask in plain language — "audit example.com's technical SEO" works the same way.
-
-## Commands
-
-| Command | What it does |
-|---|---|
-| `/agentic-ai-seo-skill audit <url>` | Full site audit, sequential specialist passes, SEO Health Score |
-| `/agentic-ai-seo-skill page <url>` | Deep single-page analysis |
-| `/agentic-ai-seo-skill technical <url>` | Technical SEO across 9 categories |
-| `/agentic-ai-seo-skill content <url>` | E-E-A-T and content quality |
-| `/agentic-ai-seo-skill content-brief <topic or url>` | Content brief: keywords, outline, internal links |
-| `/agentic-ai-seo-skill schema <url>` | Detect, validate, generate Schema.org markup |
-| `/agentic-ai-seo-skill sitemap <url or generate>` | Analyze or generate XML sitemaps |
-| `/agentic-ai-seo-skill images <url or optimize>` | Image SEO and file optimization |
-| `/agentic-ai-seo-skill geo <url>` | AI Overviews / Generative Engine Optimization |
-| `/agentic-ai-seo-skill aeo <url>` | Featured Snippets, PAA, Knowledge Panel |
-| `/agentic-ai-seo-skill plan <business-type>` | Strategic planning, 6 industry templates |
-| `/agentic-ai-seo-skill programmatic [url\|plan]` | Programmatic SEO at scale |
-| `/agentic-ai-seo-skill competitor-pages [url\|generate]` | Competitor comparison pages |
-| `/agentic-ai-seo-skill local <url>` | Local SEO: GBP, NAP, citations, reviews |
-| `/agentic-ai-seo-skill maps [command]` | Maps intelligence: geo-grid, GBP audit |
-| `/agentic-ai-seo-skill hreflang [url]` | Hreflang / i18n audit and generation |
-| `/agentic-ai-seo-skill google [command] [url]` | Google APIs: GSC, PageSpeed, CrUX, Indexing, GA4 |
-| `/agentic-ai-seo-skill backlinks <url>` | Backlink profile, free-tier sources only |
-| `/agentic-ai-seo-skill cluster <seed-keyword>` | SERP-based semantic clustering |
-| `/agentic-ai-seo-skill sxo <url>` | Search Experience Optimization |
-| `/agentic-ai-seo-skill drift baseline\|compare\|history <url>` | SEO drift monitoring over time |
-| `/agentic-ai-seo-skill ecommerce <url>` | E-commerce SEO and marketplace intel |
-| `/agentic-ai-seo-skill flow [stage] [url\|topic]` | FLOW framework, 41 evidence-led prompts |
-| `/agentic-ai-seo-skill github [command] <owner/repo>` | GitHub repository SEO |
-
-Full detail on every command lives in its own file under `resources/skills/`.
-
-## Installation
-
-Install with the Skills CLI:
+## Quick start
 
 ```bash
 npx skills add johnakande/agentic-ai-seo-skill --global
 ```
 
-Leave off `--global` to install only in the current project.
+Then, in your agent:
 
-Claude Code 2.1.142 or newer can install the plugin instead:
+```
+/agentic-ai-seo-skill audit https://example.com
+```
+
+Or just ask: "audit example.com's technical SEO."
+
+## What you get
+
+A full audit gives you an SEO Health Score and a prioritized action plan. Every recommendation comes with:
+
+- the observation it rests on
+- how it connects to the other fixes
+- a falsifiability check, so you know when it's wrong
+- a leading indicator to watch, so you don't re-run the audit to see if it worked
+
+The skill detects your business type first (SaaS, local service, ecommerce, publisher, agency), then runs only the specialists that matter for it.
+
+## Commands
+
+**Audits**
+
+| Command | What it does |
+|---|---|
+| `audit <url>` | Full site audit with SEO Health Score |
+| `page <url>` | Deep single page analysis |
+| `technical <url>` | Technical SEO across 9 categories |
+| `content <url>` | E-E-A-T and content quality |
+| `sxo <url>` | Search Experience Optimization |
+| `drift baseline\|compare\|history <url>` | Track SEO changes over time |
+
+**AI search and content**
+
+| Command | What it does |
+|---|---|
+| `geo <url>` | Generative Engine Optimization (AI Overviews, AI answers) |
+| `aeo <url>` | Featured Snippets, People Also Ask, Knowledge Panel |
+| `schema <url>` | Detect, validate and generate Schema.org markup |
+| `content-brief <topic or url>` | Keywords, outline, internal links |
+| `cluster <seed-keyword>` | SERP based semantic keyword clustering |
+
+**Local, ecommerce and international**
+
+| Command | What it does |
+|---|---|
+| `local <url>` | GBP, NAP, citations, reviews |
+| `maps [command]` | Geo-grid and GBP audit |
+| `ecommerce <url>` | Ecommerce SEO and marketplace intel |
+| `hreflang [url]` | Hreflang and i18n audit and generation |
+
+**Data and links**
+
+| Command | What it does |
+|---|---|
+| `google [command] [url]` | Search Console, PageSpeed, CrUX, Indexing, GA4 |
+| `backlinks <url>` | Backlink profile using free tier sources only |
+| `sitemap <url or generate>` | Analyze or generate XML sitemaps |
+| `images <url or optimize>` | Image SEO and file optimization |
+
+**Strategy**
+
+| Command | What it does |
+|---|---|
+| `plan <business-type>` | Strategic plan, 6 industry templates |
+| `programmatic [url\|plan]` | Programmatic SEO at scale |
+| `competitor-pages [url\|generate]` | Competitor comparison pages |
+| `flow [stage] [url\|topic]` | FLOW framework, 41 evidence led prompts |
+
+**Repositories**
+
+| Command | What it does |
+|---|---|
+| `github [command] <owner/repo>` | GitHub repository SEO |
+
+Prefix every command with `/agentic-ai-seo-skill`. Each one has its own file in `resources/skills/`.
+
+## Install
+
+**Skills CLI (any supported agent)**
+
+```bash
+npx skills add johnakande/agentic-ai-seo-skill --global
+```
+
+Drop `--global` to install for the current project only.
+
+**Claude Code plugin** (2.1.142 or newer)
 
 ```
 /plugin marketplace add johnakande/agentic-ai-seo-skill
@@ -75,7 +108,7 @@ Claude Code 2.1.142 or newer can install the plugin instead:
 
 The plugin command is `/agentic-ai-seo-skill:agentic-ai-seo-skill`.
 
-### Manual install (Claude Code)
+**Manual, Claude Code**
 
 ```bash
 mkdir -p ~/.claude/skills
@@ -84,7 +117,7 @@ cd ~/.claude/skills/agentic-ai-seo-skill
 pip install -r requirements.txt
 ```
 
-### Manual install (OpenCode)
+**Manual, OpenCode**
 
 ```bash
 mkdir -p ~/.config/opencode/skills
@@ -93,21 +126,36 @@ cd ~/.config/opencode/skills/agentic-ai-seo-skill
 pip install -r requirements.txt
 ```
 
-### IDE / host compatibility
+You need Python 3.10 or newer. No isolated environment, no Chromium download.
 
-`SKILL.md` and everything under `resources/` and `scripts/` don't reference a fixed install location — that's the whole point of the `<SKILL_DIR>` convention. Whether a given host can use it as-is or needs the content adapted into its own format depends on whether that host reads a `SKILL.md` folder natively:
+## Compatibility
 
 | Host | Install location | Status |
 |---|---|---|
-| Claude Code | `~/.claude/skills/agentic-ai-seo-skill/` | Native skill folder. **Confirmed working** in this repo's own build and test process. |
-| OpenCode | `~/.config/opencode/skills/agentic-ai-seo-skill/` | Native skill folder. **Confirmed working**, same as Claude Code above. |
-| Antigravity IDE | `<project>/.agent/skills/agentic-ai-seo-skill/` | Native skill folder. Same sourcing caveat as Codex CLI above. |
-| Cursor | `.cursor/rules/*.mdc` + `.cursor/skills/agentic-ai-seo-skill/` | **Different native format.** Cursor reads MDC rule files with their own frontmatter, not a straight copy of `SKILL.md` — real adaptation work, not done here. |
-| Windsurf | `.windsurf/rules/*.md` + `.windsurf/skills/agentic-ai-seo-skill/` | Same caveat as Cursor: different native rule format, needs adaptation. |
-| Continue.dev | `.continue/prompts/*.prompt` + `.continue/skills/agentic-ai-seo-skill/` | Same caveat: slash-command prompt format, needs adaptation. |
-| GitHub Copilot | `.github/copilot-instructions.md` + `.github/skills/agentic-ai-seo-skill/` | Same caveat: repo-instructions format, needs adaptation. |
-| Cline | `.clinerules` + `.cline/skills/agentic-ai-seo-skill/` | Same caveat: project-rules format, needs adaptation. |
+| Claude Code | `~/.claude/skills/agentic-ai-seo-skill/` | Tested and working |
+| OpenCode | `~/.config/opencode/skills/agentic-ai-seo-skill/` | Tested and working |
+| Antigravity IDE | `<project>/.agent/skills/agentic-ai-seo-skill/` | Reads `SKILL.md` natively, not tested yet |
 
-For any host not listed, or the five above that need format adaptation: clone the repo, `pip install -r requirements.txt` inside it, and either point your host at the folder if it reads `SKILL.md` natively, or convert `SKILL.md`'s content into whatever rule/prompt format that host expects.
+Cursor, Windsurf, Continue.dev, GitHub Copilot and Cline use their own rule formats, so `SKILL.md` needs converting for them. I haven't done that work. If you do, send a pull request.
 
-No isolated environment, no Chromium download — just the scripts and whatever Python you already have (3.10+).
+Any other agent that reads a `SKILL.md` folder and runs shell commands should work. Clone the repo, run `pip install -r requirements.txt`, and point your agent at the folder.
+
+## How it works
+
+For a full audit, the orchestrator detects your business type from homepage signals and runs the relevant specialists one after another. It then passes the findings through a four step framework: PERCEIVE, ANALYZE, VALIDATE, ACT. Full method in `resources/references/thinking-framework.md`.
+
+Bundled scripts run as `python3 <SKILL_DIR>/scripts/<script>.py`. `<SKILL_DIR>` is wherever the skill lives on your machine, and your agent already knows that path. Nothing to configure.
+
+## Built by
+
+John Akande, SEO and GTM engineer at Zozzah Technologies. I build technical SEO, GEO and CRM automation systems for service businesses, ecommerce and SaaS.
+
+- Site: [johnakande.com](https://johnakande.com)
+- YouTube: [@thejohnakande](https://www.youtube.com/@thejohnakande/)
+- Want a human to run the audit? [Free audit](https://johnakande.com/#audit)
+
+Found a bug or want a new sub-skill? Open an issue.
+
+## License
+
+MIT
